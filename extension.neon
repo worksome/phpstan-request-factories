@@ -12,7 +12,8 @@ parametersSchema:
     ])
 
 services:
-    -   class: Worksome\PhpstanRequestFactories\RequireRequestFactoryRule
+    -
+        class: Worksome\PhpstanRequestFactories\RequireRequestFactoryRule
         arguments:
             requestsNamespace: %requestFactories.requestsNamespace%
             factoriesNamespace: %requestFactories.factoriesNamespace%
