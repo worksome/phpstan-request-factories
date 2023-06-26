@@ -1,0 +1,21 @@
+parameters:
+    requestFactories:
+        requestsNamespace: App\Http\Requests
+        factoriesNamespace: Tests\RequestFactories
+        excludedRequestClasses: []
+
+parametersSchema:
+    requestFactories: structure([
+        requestsNamespace: string()
+        factoriesNamespace: string()
+        excludedRequestClasses: arrayOf(string())
+    ])
+
+services:
+    -   class: Worksome\PhpstanRequestFactories\RequireRequestFactoryRule
+        arguments:
+            requestsNamespace: %requestFactories.requestsNamespace%
+            factoriesNamespace: %requestFactories.factoriesNamespace%
+            excludedRequestClasses: %requestFactories.excludedRequestClasses%
+        tags:
+            - phpstan.rules.rule
