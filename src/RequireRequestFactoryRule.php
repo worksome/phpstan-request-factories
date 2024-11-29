@@ -33,7 +33,9 @@ readonly class RequireRequestFactoryRule implements Rule
 
     /**
      * @param Class_ $node
-     */
+     *
+     * @return array<int, \PHPStan\Rules\RuleError>
+    */
     public function processNode(Node $node, Scope $scope): array
     {
         if ($node->namespacedName === null) {
@@ -57,6 +59,7 @@ readonly class RequireRequestFactoryRule implements Rule
         return $this->checkForCorrespondingFactory($className);
     }
 
+    /** @return array<int, \PHPStan\Rules\RuleError> */
     public function checkForCorrespondingFactory(string $className): array
     {
         $subName = Str::after($className, "{$this->requestsNamespace}\\");
@@ -69,7 +72,9 @@ readonly class RequireRequestFactoryRule implements Rule
         return [
             RuleErrorBuilder::message(
                 "Request \"{$className}\" does not have a corresponding Request Factory at \"{$factoryName}\"."
-            )->build()
+            )
+                ->identifier('worksome.missingRequestFactory')
+                ->build(),
         ];
     }
 }
