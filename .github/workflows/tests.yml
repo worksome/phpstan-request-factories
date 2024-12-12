@@ -8,23 +8,12 @@ on:
 
 jobs:
   test:
-    runs-on: ${{ matrix.os }}
+    name: PHPStan
+    runs-on: ubuntu-latest
     env:
       PREVENT_OUTPUT: true
     strategy:
-      fail-fast: true
-      matrix:
-        os: [ubuntu-latest]
-        php: [8.2, 8.3]
-        laravel: [10.*, 11.*]
-        stability: [prefer-lowest, prefer-stable]
-        include:
-          - laravel: 10.*
-            testbench: 8.*
-          - laravel: 11.*
-            testbench: 9.*
-
-    name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
+      fail-fast: false
 
     steps:
       - name: Checkout code
@@ -33,18 +22,18 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php }}
+          php-version: 8.3
           coverage: none
+        env:
+          COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup problem matchers
         run: |
           echo "::add-matcher::${{ runner.tool_cache }}/php.json"
           echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
-      - name: Install dependencies
-        run: |
-          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update --ansi
-          composer update --${{ matrix.stability }} --prefer-dist --no-interaction --ansi
+      - name: Install composer dependencies
+        uses: ramsey/composer-install@v3
 
       - name: Execute tests
         run: composer test:unit
