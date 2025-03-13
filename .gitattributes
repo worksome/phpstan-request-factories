@@ -1,5 +1,6 @@
 # Path-based git attributes
-# https://www.kernel.org/pub/software/scm/git/docs/gitattributes.html
+# https://git-scm.com/docs/gitattributes
+* text=auto
 
 # Ignore all test and documentation with "export-ignore".
 /.github                export-ignore
@@ -11,7 +12,6 @@
 /tests                  export-ignore
 /.editorconfig          export-ignore
 /.php_cs.dist.php       export-ignore
-/ecs.php                export-ignore
 /psalm.xml              export-ignore
 /psalm.xml.dist         export-ignore
 /testbench.yaml         export-ignore
