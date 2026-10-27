@@ -4,7 +4,8 @@
     "keywords": [
         "worksome",
         "laravel",
-        "phpstan-request-factories"
+        "phpstan-request-factories",
+        "static analysis"
     ],
     "homepage": "https://github.com/worksome/phpstan-request-factories",
     "license": "MIT",
