@@ -18,17 +18,17 @@
     ],
     "require": {
         "php": "^8.4",
-        "illuminate/contracts": "^12.0 || ^13.0",
-        "illuminate/http": "^12.0 || ^13.0",
-        "phpstan/phpstan": "^2.1",
+        "illuminate/contracts": "^13.0",
+        "illuminate/http": "^13.0",
+        "phpstan/phpstan": "^2.3",
         "worksome/request-factories": "^3.5"
     },
     "require-dev": {
         "larastan/larastan": "^3.9",
         "nunomaduro/collision": "^8.1",
-        "orchestra/testbench": "^10.0 || ^11.0",
-        "pestphp/pest": "^4.4",
-        "worksome/coding-style": "^3.4"
+        "orchestra/testbench": "^11.3",
+        "pestphp/pest": "^5.0",
+        "worksome/coding-style": "^6.0"
     },
     "autoload": {
         "psr-4": {
@@ -56,8 +56,9 @@
     "config": {
         "sort-packages": true,
         "allow-plugins": {
-            "pestphp/pest-plugin": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true,
             "worksome/coding-style": true
         }
     },
